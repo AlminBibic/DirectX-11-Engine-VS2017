@@ -9,7 +9,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	engine.Initialize(hInstance, "DirectXEngine", "MyWindowClass", 800, 600);
 	while (engine.ProcessMessages() == true)
 	{
-		
+		engine.Update();
 	}
 
 	return 0;

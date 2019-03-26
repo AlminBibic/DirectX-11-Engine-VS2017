@@ -9,3 +9,32 @@ bool Engine::ProcessMessages()
 {
 	return this->render_window.ProcessMessages();
 }
+
+void Engine::Update()
+{
+	while (!keyboard.CharBufferIsEmpty())
+	{
+		unsigned char ch = keyboard.ReadChar();
+	}
+
+	while (!keyboard.KeyBufferIsEmpty())
+	{
+		KeyboardEvent kbe = keyboard.ReadKey();
+		unsigned char keycode = kbe.GetKeyCode();
+	}
+
+	while (!mouse.EventBufferIsEmpty())
+	{
+		MouseEvent me = mouse.ReadEvent();
+		if (me.GetType() == MouseEvent::EventType::RAW_MOVE)
+		{
+			std::string outmsg = "X: ";
+			outmsg += std::to_string(me.GetPosX());
+			outmsg += ", ";
+			outmsg += "Y: ";
+			outmsg += std::to_string(me.GetPosY());
+			outmsg += "\n";
+			OutputDebugStringA(outmsg.c_str());
+		}
+	}
+}
