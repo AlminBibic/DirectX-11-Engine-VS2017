@@ -1,7 +1,2 @@
-﻿  Engine.cpp
-  Graphics.cpp
-  RenderWindow.cpp
-  Source.cpp
-  WindowContainer.cpp
-  Code wird generiert...
+﻿  Graphics.cpp
   DirectX 11 Engine VS2017.vcxproj -> D:\MyProjects\DirectX11Engine\DirectX-11-Engine-VS2017-Tutorial_1\DirectX 11 Engine VS2017\x64\Debug\DirectX 11 Engine VS2017.exe
