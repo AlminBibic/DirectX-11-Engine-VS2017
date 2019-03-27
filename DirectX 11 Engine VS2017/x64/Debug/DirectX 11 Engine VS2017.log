@@ -1,1 +1,11 @@
-﻿  DirectX 11 Engine VS2017.vcxproj -> D:\MyProjects\DirectX11Engine\DirectX-11-Engine-VS2017-Tutorial_1\DirectX 11 Engine VS2017\x64\Debug\DirectX 11 Engine VS2017.exe
+﻿  compilation object save succeeded; see D:\MyProjects\DirectX11Engine\DirectX-11-Engine-VS2017-Tutorial_1\DirectX 11 Engine VS2017\x64\Debug\pixelshader.cso
+  Engine.cpp
+  Graphics.cpp
+d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.cpp(100): warning C4244: "=": Konvertierung von "int" in "FLOAT", möglicher Datenverlust
+d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.cpp(101): warning C4244: "=": Konvertierung von "int" in "FLOAT", möglicher Datenverlust
+  Shaders.cpp
+  RenderWindow.cpp
+  Source.cpp
+  WindowContainer.cpp
+  Code wird generiert...
+  DirectX 11 Engine VS2017.vcxproj -> D:\MyProjects\DirectX11Engine\DirectX-11-Engine-VS2017-Tutorial_1\DirectX 11 Engine VS2017\x64\Debug\DirectX 11 Engine VS2017.exe
