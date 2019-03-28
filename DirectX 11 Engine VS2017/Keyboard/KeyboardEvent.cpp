@@ -33,3 +33,4 @@ unsigned char KeyboardEvent::GetKeyCode() const
 {
 	return this->key;
 }
+

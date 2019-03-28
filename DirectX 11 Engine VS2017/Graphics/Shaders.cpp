@@ -27,7 +27,6 @@ bool VertexShader::Initialize(Microsoft::WRL::ComPtr<ID3D11Device>& device, std:
 		return false;
 	}
 
-
 	return true;
 }
 

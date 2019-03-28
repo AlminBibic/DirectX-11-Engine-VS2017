@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef IndicesBuffer_h__
+#define IndicesBuffer_h__
 #include <d3d11.h>
 #include <wrl/client.h>
 #include <vector>
@@ -48,3 +48,5 @@ public:
 		return hr;
 	}
 };
+
+#endif // IndicesBuffer_h__

@@ -20,15 +20,13 @@ WindowContainer::WindowContainer()
 
 		raw_input_initialized = true;
 	}
-  }
-
+}
 
 LRESULT WindowContainer::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch (uMsg)
 	{
-
-    //Keyboard Messages
+		//Keyboard Messages
 	case WM_KEYDOWN:
 	{
 		unsigned char keycode = static_cast<unsigned char>(wParam);
@@ -46,15 +44,12 @@ LRESULT WindowContainer::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
 		}
 		return 0;
 	}
-
-
 	case WM_KEYUP:
 	{
 		unsigned char keycode = static_cast<unsigned char>(wParam);
 		keyboard.OnKeyReleased(keycode);
 		return 0;
 	}
-
 	case WM_CHAR:
 	{
 		unsigned char ch = static_cast<unsigned char>(wParam);
@@ -72,7 +67,6 @@ LRESULT WindowContainer::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
 		}
 		return 0;
 	}
-	 
 	//Mouse Messages
 	case WM_MOUSEMOVE:
 	{
@@ -135,12 +129,10 @@ LRESULT WindowContainer::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
 		{
 			mouse.OnWheelDown(x, y);
 		}
-
 		return 0;
 	}
 	case WM_INPUT:
 	{
-
 		UINT dataSize;
 		GetRawInputData(reinterpret_cast<HRAWINPUT>(lParam), RID_INPUT, NULL, &dataSize, sizeof(RAWINPUTHEADER)); //Need to populate data size first
 
@@ -159,7 +151,6 @@ LRESULT WindowContainer::WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM 
 
 		return DefWindowProc(hwnd, uMsg, wParam, lParam); //Need to call DefWindowProc for WM_INPUT messages
 	}
-
 	default:
 		return DefWindowProc(hwnd, uMsg, wParam, lParam);
 	}

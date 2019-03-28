@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef ConstantBuffer_h__
+#define ConstantBuffer_h__
 #include <d3d11.h>
 #include "ConstantBufferTypes.h"
 #include <wrl/client.h>
@@ -61,3 +61,5 @@ public:
 		return true;
 	}
 };
+
+#endif // ConstantBuffer_h__
