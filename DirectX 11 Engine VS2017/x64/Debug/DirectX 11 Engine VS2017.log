@@ -1,6 +1,6 @@
 ﻿  Graphics.cpp
-d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.cpp(176): warning C4244: "=": Konvertierung von "int" in "FLOAT", möglicher Datenverlust
-d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.cpp(177): warning C4244: "=": Konvertierung von "int" in "FLOAT", möglicher Datenverlust
+d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.cpp(218): warning C4244: "=": Konvertierung von "int" in "FLOAT", möglicher Datenverlust
+d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.cpp(219): warning C4244: "=": Konvertierung von "int" in "FLOAT", möglicher Datenverlust
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\memory(2538): warning C4267: "Initialisierung": Konvertierung von "size_t" nach "_Ty", Datenverlust möglich
           with
           [
@@ -16,10 +16,10 @@ c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.1
           [
               T=Vertex
           ]
-  d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.cpp(272): note: Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-Vorlage "HRESULT VertexBuffer<Vertex>::Initialize(ID3D11Device *,T *,UINT)".
+  d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.cpp(314): note: Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-Vorlage "HRESULT VertexBuffer<Vertex>::Initialize(ID3D11Device *,T *,UINT)".
           with
           [
               T=Vertex
           ]
-  d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.h(34): note: Siehe Verweis auf die Klasse Vorlage-Instanziierung "VertexBuffer<Vertex>", die kompiliert wird.
+  d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.h(38): note: Siehe Verweis auf die Klasse Vorlage-Instanziierung "VertexBuffer<Vertex>", die kompiliert wird.
   DirectX 11 Engine VS2017.vcxproj -> D:\MyProjects\DirectX11Engine\DirectX-11-Engine-VS2017-Tutorial_1\DirectX 11 Engine VS2017\x64\Debug\DirectX 11 Engine VS2017.exe
