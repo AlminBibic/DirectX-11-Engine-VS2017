@@ -5,6 +5,8 @@
 #include <SpriteBatch.h>
 #include <SpriteFont.h>
 #include <WICTextureLoader.h>
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
 
 
 class Graphics
@@ -26,7 +28,8 @@ private:
 	VertexShader vertexshader;
 	PixelShader pixelshader;
 
-	Microsoft::WRL::ComPtr<ID3D11Buffer> vertexBuffer;
+	VertexBuffer<Vertex> vertexBuffer;
+	IndexBuffer indicesBuffer;
 
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> depthStencilView;
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> depthStencilBuffer;
