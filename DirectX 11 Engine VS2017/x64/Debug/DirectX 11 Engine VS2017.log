@@ -1,12 +1,12 @@
 ﻿  Graphics.cpp
-d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.cpp(218): warning C4244: "=": Konvertierung von "int" in "FLOAT", möglicher Datenverlust
-d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.cpp(219): warning C4244: "=": Konvertierung von "int" in "FLOAT", möglicher Datenverlust
+d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.cpp(230): warning C4244: "=": Konvertierung von "int" in "FLOAT", möglicher Datenverlust
+d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.cpp(231): warning C4244: "=": Konvertierung von "int" in "FLOAT", möglicher Datenverlust
 c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.15.26726\include\memory(2538): warning C4267: "Initialisierung": Konvertierung von "size_t" nach "_Ty", Datenverlust möglich
           with
           [
               _Ty=UINT
           ]
-  d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\vertexbuffer.h(48): note: Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-Vorlage "std::unique_ptr<UINT,std::default_delete<_Ty>> std::make_unique<UINT,size_t,0>(size_t &&)".
+  d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\vertexbuffer.h(56): note: Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-Vorlage "std::unique_ptr<UINT,std::default_delete<_Ty>> std::make_unique<UINT,size_t,0>(size_t &&)".
           with
           [
               _Ty=UINT
@@ -16,10 +16,10 @@ c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.1
           [
               T=Vertex
           ]
-  d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.cpp(314): note: Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-Vorlage "HRESULT VertexBuffer<Vertex>::Initialize(ID3D11Device *,T *,UINT)".
+  d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.cpp(369): note: Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-Vorlage "HRESULT VertexBuffer<Vertex>::Initialize(ID3D11Device *,T *,UINT)".
           with
           [
               T=Vertex
           ]
-  d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.h(38): note: Siehe Verweis auf die Klasse Vorlage-Instanziierung "VertexBuffer<Vertex>", die kompiliert wird.
+  d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\graphics.h(39): note: Siehe Verweis auf die Klasse Vorlage-Instanziierung "VertexBuffer<Vertex>", die kompiliert wird.
   DirectX 11 Engine VS2017.vcxproj -> D:\MyProjects\DirectX11Engine\DirectX-11-Engine-VS2017-Tutorial_1\DirectX 11 Engine VS2017\x64\Debug\DirectX 11 Engine VS2017.exe
