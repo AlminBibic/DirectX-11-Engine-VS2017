@@ -44,7 +44,7 @@ void Graphics::RenderFrame()
 	UINT offset = 0;
 
 	{ 
-		this->model.Draw(camera.GetViewMatrix() * camera.GetProjectionMatrix());
+		this->gameobject.Draw(camera.GetViewMatrix() * camera.GetProjectionMatrix());
 	}
 
 	//Draw Text
@@ -67,17 +67,7 @@ void Graphics::RenderFrame()
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 	//Create ImGui Test Window
-	ImGui::Begin("Test");
-	ImGui::Text("This is example text.");
-	if (ImGui::Button("<"))
-		counter -= 1;
-	ImGui::SameLine();
-	std::string clickCount = "Click Count: " + std::to_string(counter);
-	ImGui::Text(clickCount.c_str());
-	ImGui::SameLine();
-	if (ImGui::Button(">"))
-		counter += 1;
-	//ImGui::DragFloat3("Translation X/Y/Z", translationOffset[2], 0.1f, -5.0f, 5.0f);
+	ImGui::Begin("Transform");	
 	ImGui::End();
 	//Assemble Together Draw Data
 	ImGui::Render();
@@ -260,7 +250,7 @@ bool Graphics::InitializeScene()
 	{
 
 		//Load Texture
-		HRESULT hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Textures\\Dragon.jpg", nullptr, myTexture.GetAddressOf());
+		HRESULT hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Textures\\Plane.jpg", nullptr, myTexture.GetAddressOf());
 		COM_ERROR_IF_FAILED(hr, "Failed to create wic texture from file.");
 
 		//Initialize Constant Buffer(s)
@@ -270,12 +260,10 @@ bool Graphics::InitializeScene()
 		hr = this->cb_ps_pixelshader.Initialize(this->device.Get(), this->deviceContext.Get());
 		COM_ERROR_IF_FAILED(hr, "Failed to initialize constant buffer.");
 
-		if (!model.Initialize("Data\\Objects\\Dragon.obj",this->device.Get(), this->deviceContext.Get(), this->myTexture.Get(), this->cb_vs_vertexshader))
+		if (!gameobject.Initialize("Data\\Objects\\Plane.obj",this->device.Get(), this->deviceContext.Get(), this->myTexture.Get(), this->cb_vs_vertexshader))
 		{
 			return false;
 		}
-
-		
 
 		camera.SetPosition(0.0f, 0.0f, -2.0f);
 		camera.SetProjectionValues(90.0f, static_cast<float>(windowWidth) / static_cast<float>(windowHeight), 0.1f, 1000.0f);

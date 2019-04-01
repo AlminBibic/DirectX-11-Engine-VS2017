@@ -1,4 +1,20 @@
-﻿  RenderWindow.cpp
+﻿  Engine.cpp
+d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\engine.cpp(23): warning C4244: "Initialisierung": Konvertierung von "double" in "float", möglicher Datenverlust
+  GameObject.cpp
+  Graphics.cpp
+  Model.cpp
+  Mesh.cpp
+d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\mesh.cpp(7): warning C4267: "Argument": Konvertierung von "size_t" nach "UINT", Datenverlust möglich
+d:\myprojects\directx11engine\directx-11-engine-vs2017-tutorial_1\directx 11 engine vs2017\directx 11 engine vs2017\graphics\mesh.cpp(10): warning C4267: "Argument": Konvertierung von "size_t" nach "UINT", Datenverlust möglich
+  RenderWindow.cpp
   Source.cpp
+  WindowContainer.cpp
   Code wird generiert...
+DirectXTK.lib(CommonStates.obj) : warning LNK4099: PDB "DirectXTK.pdb" wurde nicht mit "DirectXTK.lib(CommonStates.obj)" oder an "D:\MyProjects\DirectX11Engine\DirectX-11-Engine-VS2017-Tutorial_1\DirectX 11 Engine VS2017\x64\Debug\DirectXTK.pdb" gefunden; Objekt wird verkn³pft, als ob keine Debuginformationen vorhanden wõren.
+DirectXTK.lib(BinaryReader.obj) : warning LNK4099: PDB "DirectXTK.pdb" wurde nicht mit "DirectXTK.lib(BinaryReader.obj)" oder an "D:\MyProjects\DirectX11Engine\DirectX-11-Engine-VS2017-Tutorial_1\DirectX 11 Engine VS2017\x64\Debug\DirectXTK.pdb" gefunden; Objekt wird verkn³pft, als ob keine Debuginformationen vorhanden wõren.
+DirectXTK.lib(pch.obj) : warning LNK4099: PDB "DirectXTK.pdb" wurde nicht mit "DirectXTK.lib(pch.obj)" oder an "D:\MyProjects\DirectX11Engine\DirectX-11-Engine-VS2017-Tutorial_1\DirectX 11 Engine VS2017\x64\Debug\DirectXTK.pdb" gefunden; Objekt wird verkn³pft, als ob keine Debuginformationen vorhanden wõren.
+DirectXTK.lib(SpriteBatch.obj) : warning LNK4099: PDB "DirectXTK.pdb" wurde nicht mit "DirectXTK.lib(SpriteBatch.obj)" oder an "D:\MyProjects\DirectX11Engine\DirectX-11-Engine-VS2017-Tutorial_1\DirectX 11 Engine VS2017\x64\Debug\DirectXTK.pdb" gefunden; Objekt wird verkn³pft, als ob keine Debuginformationen vorhanden wõren.
+DirectXTK.lib(SpriteFont.obj) : warning LNK4099: PDB "DirectXTK.pdb" wurde nicht mit "DirectXTK.lib(SpriteFont.obj)" oder an "D:\MyProjects\DirectX11Engine\DirectX-11-Engine-VS2017-Tutorial_1\DirectX 11 Engine VS2017\x64\Debug\DirectXTK.pdb" gefunden; Objekt wird verkn³pft, als ob keine Debuginformationen vorhanden wõren.
+DirectXTK.lib(VertexTypes.obj) : warning LNK4099: PDB "DirectXTK.pdb" wurde nicht mit "DirectXTK.lib(VertexTypes.obj)" oder an "D:\MyProjects\DirectX11Engine\DirectX-11-Engine-VS2017-Tutorial_1\DirectX 11 Engine VS2017\x64\Debug\DirectXTK.pdb" gefunden; Objekt wird verkn³pft, als ob keine Debuginformationen vorhanden wõren.
+DirectXTK.lib(WICTextureLoader.obj) : warning LNK4099: PDB "DirectXTK.pdb" wurde nicht mit "DirectXTK.lib(WICTextureLoader.obj)" oder an "D:\MyProjects\DirectX11Engine\DirectX-11-Engine-VS2017-Tutorial_1\DirectX 11 Engine VS2017\x64\Debug\DirectXTK.pdb" gefunden; Objekt wird verkn³pft, als ob keine Debuginformationen vorhanden wõren.
   DirectX 11 Engine VS2017.vcxproj -> D:\MyProjects\DirectX11Engine\DirectX-11-Engine-VS2017-Tutorial_1\DirectX 11 Engine VS2017\x64\Debug\DirectX 11 Engine VS2017.exe
