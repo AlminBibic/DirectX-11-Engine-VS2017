@@ -58,7 +58,7 @@ void Graphics::RenderFrame()
 		fpsTimer.Restart();
 	}
 	spriteBatch->Begin();
-	spriteFont->DrawString(spriteBatch.get(), StringConverter::StringToWide(fpsString).c_str(), DirectX::XMFLOAT2(0, 0), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));
+	spriteFont->DrawString(spriteBatch.get(), StringHelper::StringToWide(fpsString).c_str(), DirectX::XMFLOAT2(0, 0), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));
 	spriteBatch->End();
 
 	static int counter = 0;
@@ -248,22 +248,19 @@ bool Graphics::InitializeScene()
 {
 	try
 	{
-
-		//Load Texture
-		HRESULT hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Textures\\Plane.jpg", nullptr, myTexture.GetAddressOf());
-		COM_ERROR_IF_FAILED(hr, "Failed to create wic texture from file.");
-
 		//Initialize Constant Buffer(s)
-		hr = this->cb_vs_vertexshader.Initialize(this->device.Get(), this->deviceContext.Get());
+		HRESULT hr = this->cb_vs_vertexshader.Initialize(this->device.Get(), this->deviceContext.Get());
 		COM_ERROR_IF_FAILED(hr, "Failed to initialize constant buffer.");
 
 		hr = this->cb_ps_pixelshader.Initialize(this->device.Get(), this->deviceContext.Get());
 		COM_ERROR_IF_FAILED(hr, "Failed to initialize constant buffer.");
 
-		if (!gameobject.Initialize("Data\\Objects\\Plane.obj",this->device.Get(), this->deviceContext.Get(), this->myTexture.Get(), this->cb_vs_vertexshader))
+		if (!gameobject.Initialize("Data\\Objects\\Plane\\Plane.obj",this->device.Get(), this->deviceContext.Get(), this->cb_vs_vertexshader))
 		{
 			return false;
 		}
+
+		
 
 		camera.SetPosition(0.0f, 0.0f, -2.0f);
 		camera.SetProjectionValues(90.0f, static_cast<float>(windowWidth) / static_cast<float>(windowHeight), 0.1f, 1000.0f);
