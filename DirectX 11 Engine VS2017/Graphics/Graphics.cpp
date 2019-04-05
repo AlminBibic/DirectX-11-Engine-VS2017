@@ -1,4 +1,5 @@
 #include "Graphics.h"
+#include <string>
 
 bool Graphics::Initialize(HWND hwnd, int width, int height)
 {
@@ -26,9 +27,17 @@ bool Graphics::Initialize(HWND hwnd, int width, int height)
 	return true;
 }
 
+//model path
+static std::string path = "Data\\Objects\\Plane\\Plane.obj";
+static std::string path2 = "Data\\Objects\\Cube\\Cube.obj";
+static float BgColor[3] = { 0.3f, 0.4f, 0.5f};
+
 void Graphics::RenderFrame()
 {
-	float bgcolor[] = { 0.3f, 0.4f, 0.5f, 1.0f };
+	this->cb_ps_light.ApplyChanges();
+	this->deviceContext->PSSetConstantBuffers(0, 1, this->cb_ps_light.GetAddressOf());
+
+	float bgcolor[] = { BgColor[0],BgColor[1],BgColor[2],1.0f};
 	this->deviceContext->ClearRenderTargetView(this->renderTargetView.Get(), bgcolor);
 	this->deviceContext->ClearDepthStencilView(this->depthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
@@ -46,6 +55,15 @@ void Graphics::RenderFrame()
 	{ 
 		this->gameobject.Draw(camera.GetViewMatrix() * camera.GetProjectionMatrix());
 	}
+	{
+		 this->gameobject2.Draw(camera.GetViewMatrix() * camera.GetProjectionMatrix());
+	}	
+
+	//Adjust Transform
+	static float translation[3] = { 0.0f,0.0f,0.0f };
+	gameobject.SetPosition(translation[0],translation[1],translation[2]);
+	static float rotation[3] = { 0.0f,0.0f,0.0f };
+	gameobject.SetRotation(rotation[0], rotation[1], rotation[2]);
 
 	//Draw Text
 	static int fpsCounter = 0;
@@ -57,6 +75,8 @@ void Graphics::RenderFrame()
 		fpsCounter = 0;
 		fpsTimer.Restart();
 	}
+
+
 	spriteBatch->Begin();
 	spriteFont->DrawString(spriteBatch.get(), StringHelper::StringToWide(fpsString).c_str(), DirectX::XMFLOAT2(0, 0), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));
 	spriteBatch->End();
@@ -67,7 +87,21 @@ void Graphics::RenderFrame()
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 	//Create ImGui Test Window
-	ImGui::Begin("Transform");	
+	ImGui::Begin("Details");
+
+	ImGui::Text("Transform:");
+	ImGui::DragFloat3("Translation", translation,0.1f);
+	ImGui::DragFloat3("Rotation   ", rotation, 0.1f);
+	ImGui::NewLine();
+
+	ImGui::Text("Sky:");
+	ImGui::DragFloat3("BG Color", BgColor, 0.01f,0.0f,1.0f);
+	ImGui::NewLine();
+
+	ImGui::Text("LigthSettings:");
+	ImGui::DragFloat3("AmbientLightColor", &this->cb_ps_light.data.ambientLightColor.x, 0.01f, 0.0f, 1.0f);
+	ImGui::DragFloat("AmbientLightStrength", &this->cb_ps_light.data.ambientLightStrength, 0.01f, 0.0f, 1.0f);
+
 	ImGui::End();
 	//Assemble Together Draw Data
 	ImGui::Render();
@@ -245,22 +279,30 @@ bool Graphics::InitializeShaders()
 }
 
 bool Graphics::InitializeScene()
-{
+{	
+
 	try
 	{
 		//Initialize Constant Buffer(s)
 		HRESULT hr = this->cb_vs_vertexshader.Initialize(this->device.Get(), this->deviceContext.Get());
 		COM_ERROR_IF_FAILED(hr, "Failed to initialize constant buffer.");
 
-		hr = this->cb_ps_pixelshader.Initialize(this->device.Get(), this->deviceContext.Get());
+		hr = this->cb_ps_light.Initialize(this->device.Get(), this->deviceContext.Get());
 		COM_ERROR_IF_FAILED(hr, "Failed to initialize constant buffer.");
 
-		if (!gameobject.Initialize("Data\\Objects\\Plane\\Plane.obj",this->device.Get(), this->deviceContext.Get(), this->cb_vs_vertexshader))
+		this->cb_ps_light.data.ambientLightColor = XMFLOAT3(1.0f,1.0f,1.0f);
+		this->cb_ps_light.data.ambientLightStrength = 1.0f;
+
+		if (!gameobject.Initialize(path,this->device.Get(), this->deviceContext.Get(), this->cb_vs_vertexshader))
 		{
 			return false;
 		}
 
-		
+		if (!gameobject2.Initialize(path2, this->device.Get(), this->deviceContext.Get(), this->cb_vs_vertexshader))
+		{
+			return false;
+		}
+
 
 		camera.SetPosition(0.0f, 0.0f, -2.0f);
 		camera.SetProjectionValues(90.0f, static_cast<float>(windowWidth) / static_cast<float>(windowHeight), 0.1f, 1000.0f);

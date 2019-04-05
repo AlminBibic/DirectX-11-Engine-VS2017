@@ -9,7 +9,7 @@
 #include "ImGUI\\imgui.h"
 #include "ImGUI\\imgui_impl_win32.h"
 #include "ImGUI\\imgui_impl_dx11.h"
-#include "GameObject.h"
+#include "RenderableGameObject.h"
 
 class Graphics
 {
@@ -17,7 +17,8 @@ public:
 	bool Initialize(HWND hwnd, int width, int height);
 	void RenderFrame();
 	Camera camera;
-	GameObject gameobject;;
+	RenderableGameObject gameobject;
+	RenderableGameObject gameobject2;
 
 private:
 	bool InitializeDirectX(HWND hwnd);
@@ -32,7 +33,7 @@ private:
 	VertexShader vertexshader;
 	PixelShader pixelshader;
 	ConstantBuffer<CB_VS_vertexshader> cb_vs_vertexshader;
-	ConstantBuffer<CB_PS_pixelshader> cb_ps_pixelshader;
+	ConstantBuffer<CB_PS_light> cb_ps_light;
 
 
 
@@ -55,5 +56,4 @@ private:
 	int windowHeight = 0;
 
 	Timer fpsTimer;
-
 };

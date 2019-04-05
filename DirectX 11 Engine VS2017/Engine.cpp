@@ -23,7 +23,6 @@ void Engine::Update()
 	float dt = timer.GetMilisecondsElapsed();
 	timer.Restart();
 
-
 	while (!keyboard.CharBufferIsEmpty())
 	{
 		unsigned char ch = keyboard.ReadChar();
