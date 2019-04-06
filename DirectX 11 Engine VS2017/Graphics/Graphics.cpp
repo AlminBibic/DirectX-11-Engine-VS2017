@@ -28,12 +28,16 @@ bool Graphics::Initialize(HWND hwnd, int width, int height)
 }
 
 //model path
-static std::string path = "Data\\Objects\\Plane\\Plane.obj";
+static std::string path = "Data\\Objects\\Crash\\crash.obj";
 static std::string path2 = "Data\\Objects\\Cube\\Cube.obj";
 static float BgColor[3] = { 0.3f, 0.4f, 0.5f};
 
 void Graphics::RenderFrame()
 {
+	this->cb_ps_light.data.dynamicLightColor = light.lightColor;
+	this->cb_ps_light.data.dynamicLightStrength = light.lightStrength;
+	this->cb_ps_light.data.dynamicLightPosition = light.GetPositionFloat3();
+
 	this->cb_ps_light.ApplyChanges();
 	this->deviceContext->PSSetConstantBuffers(0, 1, this->cb_ps_light.GetAddressOf());
 
@@ -53,11 +57,18 @@ void Graphics::RenderFrame()
 	UINT offset = 0;
 
 	{ 
+
 		this->gameobject.Draw(camera.GetViewMatrix() * camera.GetProjectionMatrix());
+		
 	}
 	{
-		 this->gameobject2.Draw(camera.GetViewMatrix() * camera.GetProjectionMatrix());
-	}	
+		this->deviceContext->PSSetShader(pixelshader_noLight.GetShader(), NULL, 0);
+		this->light.Draw(camera.GetViewMatrix() * camera.GetProjectionMatrix());
+	}
+	{
+
+        //this->gameobject2.Draw(camera.GetViewMatrix() * camera.GetProjectionMatrix());		
+	}		
 
 	//Adjust Transform
 	static float translation[3] = { 0.0f,0.0f,0.0f };
@@ -99,10 +110,16 @@ void Graphics::RenderFrame()
 	ImGui::NewLine();
 
 	ImGui::Text("LigthSettings:");
+	ImGui::Text("Ambient");
 	ImGui::DragFloat3("AmbientLightColor", &this->cb_ps_light.data.ambientLightColor.x, 0.01f, 0.0f, 1.0f);
 	ImGui::DragFloat("AmbientLightStrength", &this->cb_ps_light.data.ambientLightStrength, 0.01f, 0.0f, 1.0f);
+	ImGui::Text("Dynamic");
+	ImGui::DragFloat3("DynamicLightColor", &light.lightColor.x, 0.01f, 0.0f, 1.0f);
+	ImGui::DragFloat("DynamicLightStrength", &light.lightStrength, 0.01f, 0.0f);
 
 	ImGui::End();
+
+
 	//Assemble Together Draw Data
 	ImGui::Render();
 	//Render Draw Data
@@ -264,6 +281,7 @@ bool Graphics::InitializeShaders()
 	{
 		{"POSITION", 0, DXGI_FORMAT::DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA, 0  },
 		{"TEXCOORD", 0, DXGI_FORMAT::DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA, 0  },
+		{"NORMAL", 0, DXGI_FORMAT::DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA, 0  },
 	};
 
 	UINT numElements = ARRAYSIZE(layout);
@@ -272,6 +290,9 @@ bool Graphics::InitializeShaders()
 		return false;
 
 	if (!pixelshader.Initialize(this->device, shaderfolder + L"pixelshader.cso"))
+		return false;
+
+	if (!pixelshader_noLight.Initialize(this->device, shaderfolder + L"pixelshader_noLight.cso"))
 		return false;
 
 
@@ -290,9 +311,6 @@ bool Graphics::InitializeScene()
 		hr = this->cb_ps_light.Initialize(this->device.Get(), this->deviceContext.Get());
 		COM_ERROR_IF_FAILED(hr, "Failed to initialize constant buffer.");
 
-		this->cb_ps_light.data.ambientLightColor = XMFLOAT3(1.0f,1.0f,1.0f);
-		this->cb_ps_light.data.ambientLightStrength = 1.0f;
-
 		if (!gameobject.Initialize(path,this->device.Get(), this->deviceContext.Get(), this->cb_vs_vertexshader))
 		{
 			return false;
@@ -303,6 +321,13 @@ bool Graphics::InitializeScene()
 			return false;
 		}
 
+		if (!light.Initialize(this->device.Get(), this->deviceContext.Get(), this->cb_vs_vertexshader))
+		{
+			return false;
+		}
+
+		this->cb_ps_light.data.ambientLightColor = XMFLOAT3(1.0f, 1.0f, 1.0f);
+		this->cb_ps_light.data.ambientLightStrength = 1.0f;
 
 		camera.SetPosition(0.0f, 0.0f, -2.0f);
 		camera.SetProjectionValues(90.0f, static_cast<float>(windowWidth) / static_cast<float>(windowHeight), 0.1f, 1000.0f);
